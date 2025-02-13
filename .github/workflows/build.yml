@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04  # Ensures compatibility
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -14,7 +14,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libtinfo5
+          sudo apt-get install -y libncurses5 || sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.6 /lib/x86_64-linux-gnu/libtinfo.so.5
 
       - name: Build APK
         uses: digreatbrian/buildozer-action@v2
